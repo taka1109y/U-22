@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "u-22-6bcb5"
+  },
+  "targets": {
+    "u-22-6bcb5": {
+      "hosting": {
+        "u-22-user": [
+          "u-22-6bcb5"
+        ],
+        "u-22-admin": [
+          "u-22-admin"
+        ]
+      }
+    }
   }
 }
