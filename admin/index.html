@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/emp/login.css" />
+        <link rel="stylesheet" href="css/loading.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        
+        <title>U-22</title>
+    </head>
+
+    <body>
+
+    <div class="wrapper">
+        <h2>管理者ログイン</h2>
+        <form class="login">
+            <div class="form">
+            <!-- 入力欄 -->
+            <input type="text" class="number" name="number" placeholder="社員番号" />
+            <input type="text" class="pass" name="pass" placeholder="パスワード" />
+
+            <p class="error"></p>
+            <button>
+                <!-- 検証用本番はaタグ削除 -->
+                <a href=""></a>
+                ログイン
+            </button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+		<!-- Firebase JS SDK -->
+		<script src="/__/firebase/8.6.8/firebase-app.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-auth.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-firestore.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-functions.js"></script>
+
+		<!-- Initialize Firebase -->
+		<script src="/__/firebase/init.js"></script>
+
+		<script src="./js/firebase/login.js"></script>
+
+  </body>
+
+</html>

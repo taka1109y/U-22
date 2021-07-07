@@ -1,0 +1,81 @@
+.header {
+  margin-top: 5%;
+  margin-left: 7%;
+}
+
+.header p {
+  margin-bottom: -10px;
+}
+
+.main {
+  margin-top: 5%;
+}
+
+/* 血圧　脈拍　体温 */
+.flex_box {
+  padding: 10px; /* 余白指定 */
+  display: flex; /* フレックスボックスにする */
+  justify-content: center;
+}
+
+.flex_item {
+  padding: 10px;
+  color: #707070; /* 文字色 */
+  margin: 30px; /* 外側の余白 */
+  border-radius: 15px; /* 角丸指定 */
+  width: 20%; /* 幅指定 */
+  height: 200px;
+}
+
+.flex_item p {
+  text-align: center;
+  font-size: 20px;
+}
+
+.flex_item p a {
+  color: #707070;
+  text-decoration: none;
+  font-size: 15px;
+  border-bottom: 1px solid #707070;
+  cursor: pointer;
+}
+
+.flex_item p a:hover {
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+.flex_item:nth-child(1) {
+  border: 2px solid #707070;
+}
+
+.flex_item:nth-child(2) {
+  border: 2px solid #707070;
+}
+
+.flex_item:nth-child(2) div {
+  padding-top: 10px;
+}
+
+.flex_item:nth-child(3) {
+  border: 2px solid #707070;
+}
+
+.button {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.button button {
+  width: 20%;
+  padding: 10px;
+  border-radius: 100vh;
+  color: white;
+  background-color: #707070;
+  border: none;
+  cursor: pointer;
+}
+
+.button button:hover {
+  background-color: black;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/emp/info.css" />
+    <title>自己情報確認画面</title>
+  </head>
+  <body>
+    
+    <a class="sign-out" style="cursor: pointer;">sign out</a>
+
+    <!-- 社員番号などの情報 -->
+    <div class="header">
+      <p>社員 : ○○○○○</p>
+      <p>社員番号 : ○○○○○</p>
+      <p>2021/6/14 : AM:11:00</p>
+    </div>
+
+    <div class="main">
+      <div class="flex_box">
+        <!-- 血圧 -->
+        <div class="flex_item">
+          <p>血圧</p>
+          <div>
+            <p>最高:120mmHg</p>
+            <p>最低:120mmHg</p>
+            <p><a href="graph_emp.html">1週間のグラフを見る</a></p>
+          </div>
+        </div>
+
+        <!-- 脈拍 -->
+        <div class="flex_item">
+          <p>脈拍</p>
+          <div><p>70 拍 / 分</p></div>
+        </div>
+
+        <!-- 体温 -->
+        <div class="flex_item">
+          <p>体温</p>
+          <div>
+            <p>今日 : 36.5℃</p>
+            <p>昨日 : 36.5℃</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="button">
+        <button onclick="location.href='interview_emp.html'">面談日確認</button>
+      </div>
+    </div>
+
+    <!-- Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+		<!-- Firebase JS SDK -->
+		<script src="/__/firebase/8.6.8/firebase-app.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-auth.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-firestore.js"></script>
+		<script src="/__/firebase/8.6.8/firebase-functions.js"></script>
+
+		<!-- Initialize Firebase -->
+		<script src="/__/firebase/init.js"></script>
+
+		<script src="./js/firebase/app.js"></script>
+		<script src="./js/firebase/logout.js"></script>
+  </body>
+</html>
