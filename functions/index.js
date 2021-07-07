@@ -10,7 +10,7 @@ const db = admin.firestore();
     引数： data フォームの入力値(number:社員番号)
     引数： data フォームの入力値(email:メールアドレス)
  ------------------------------ */
-exports.addUser = functions.region('asia-northeast1').https.onCall((data) => {
+exports.addUser = functions.https.onCall((data) => {
     return db.collection("users").add({
         number: data.number,
         email: data.email,
@@ -22,7 +22,7 @@ exports.addUser = functions.region('asia-northeast1').https.onCall((data) => {
     社員番号からメールアドレスを返すAPI
     引数： data フォームの入力値(number:社員番号)
  ------------------------------ */
-exports.getEmail = functions.region('asia-northeast1').https.onCall(async(data) => {
+exports.getEmail = functions.https.onCall(async(data) => {
     // フォームに入力された社員番号
     const number = data.number;
     // firestoreのテーブル保存用連想配列
