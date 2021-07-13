@@ -3,35 +3,57 @@
 
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/emp/login.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/loading.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     
-    <title>U-22</title>
+    <title>社員ログイン</title>
   </head>
 
-  <body>
-
-    <div class="wrapper">
-
-      <h2>社員ログイン</h2>
-
-      <form class="login">
-        <div class="form">
-          <!-- 入力欄 -->
-          <input type="text" class="number" name="number" placeholder="社員番号" />
-          <input type="text" class="pass" name="pass" placeholder="パスワード" />
-
-          <!-- パスワード忘れのリンク -->
-          <a href="register.html" class="pass-link">パスワードを忘れた場合はこちら</a>
-          <p class="error"></p>
-          <button>ログイン</button>
-        </div>
-      </form>
-
+  <body class="text-gray-600">
+    <div>
+      <h1 class="flex justify-center mt-48 text-xl md:text-3xl">
+        社員ログイン
+      </h1>
+      <!-- 入力フォーム -->
+      <div class="flex justify-center mt-5">
+        <form class="login">
+          <!-- 社員番号 -->
+          <div class="my-6">
+            <input
+              name="number"
+              type="text"
+              placeholder="社員番号"
+              class="w-56 text-xs text-center border-b border-gray-700  md:w-96 md:text-base focus:outline-none hover:border-black"
+            />
+          </div>
+          <!-- パスワード -->
+          <div class="my-6">
+            <input
+              name="pass"
+              placeholder="パスワード"
+              type="password"
+              class="w-56 text-xs text-center border-b border-gray-700  md:w-96 md:text-base focus:outline-none hover:border-black"
+            />
+          </div>
+          <!-- パスワード忘れリンク -->
+          <div class="flex justify-center md:justify-end">
+            <a
+              href="#"
+              class="text-xs text-gray-400 border-b-2 border-gray-400  md:text-sm hover:text-gray-800 hover:border-gray-800"
+              >パスワードを忘れた場合はこちら</a
+            >
+          </div>
+          <!-- ログインボタン -->
+          <div class="flex justify-center mt-14">
+            <button
+              class="flex justify-center px-10 py-1 text-sm text-white bg-gray-500 cursor-pointer  rounded-3xl md:py-2 md:px-10 md:text-lg hover:bg-gray-700"
+            >ログイン</button> 
+          </div>
+        </form>
+      </div>
     </div>
 
 
@@ -46,9 +68,9 @@
 
 		<!-- Initialize Firebase -->
 		<script src="/__/firebase/init.js"></script>
-
+    
 		<script src="./js/firebase/login.js"></script>
-
+    
   </body>
 
 </html>

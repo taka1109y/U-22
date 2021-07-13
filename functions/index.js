@@ -1,7 +1,6 @@
 // firebaseのモジュールの読み込み
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { user } = require("firebase-functions/lib/providers/auth");
 admin.initializeApp();
 const db = admin.firestore();
 
@@ -49,7 +48,7 @@ exports.getEmail = functions.https.onCall(async(data) => {
 
 /* ------------------------------
     authログイン情報から社員名と社員番号の抽出
-    引数： data フォームの入力値(number:社員番号)
+    引数： data ログイン情報(number:社員番号)
  ------------------------------ */
 exports.getUserInfo = functions.https.onCall(async(data) => {
     const email = data.email;
@@ -70,3 +69,28 @@ exports.getUserInfo = functions.https.onCall(async(data) => {
         });
     });
 });
+
+
+/* ------------------------------
+    authログイン情報から社員名と社員番号の抽出
+    引数： data フォームの入力値(number:社員番号)
+ ------------------------------ */
+exports.getHealthData = functions.https.onCall(async(data) => {
+    const number = data.number;
+    const helthData = {};
+    const ref = db.collection("health");
+
+    return new Promise(function(resolve, reject) {
+        ref.where("number", "==", number).get()
+        .then(function(snapshot){
+            snapshot.forEach(function(doc) {
+                helthData["healthData"] = doc.data();
+            })
+            resolve(helthData);
+        })
+        .catch((error) => {
+            console.log(error.message);
+            reject();
+        })
+    })
+})

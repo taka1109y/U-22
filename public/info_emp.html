@@ -2,54 +2,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/emp/info.css" />
-    <title>自己情報確認画面</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/loading.css">
     
-    <a class="sign-out" style="cursor: pointer;">sign out</a>
+    <script src="./js/loading.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-    <!-- 社員番号などの情報 -->
-    <div class="header">
-      <p class="name">社員 : ○○○○○</p>
-      <p class="number">社員番号 : ○○○○○</p>
-      <p>2021/6/14 : AM:11:00</p>
-    </div>
-
-    <div class="main">
-      <div class="flex_box">
-        <!-- 血圧 -->
-        <div class="flex_item">
-          <p>血圧</p>
-          <div>
-            <p>最高:120mmHg</p>
-            <p>最低:120mmHg</p>
-            <p><a href="graph_emp.html">1週間のグラフを見る</a></p>
-          </div>
-        </div>
-
-        <!-- 脈拍 -->
-        <div class="flex_item">
-          <p>脈拍</p>
-          <div><p>70 拍 / 分</p></div>
-        </div>
-
-        <!-- 体温 -->
-        <div class="flex_item">
-          <p>体温</p>
-          <div>
-            <p>今日 : 36.5℃</p>
-            <p>昨日 : 36.5℃</p>
-          </div>
-        </div>
+    <title>社員体調管理画面</title>
+  </head>
+    
+  <body class="text-gray-600">
+    <!-- 社員情報 -->
+    <div class="mt-16 ml-20 text-sm md:flex md:justify-between md:text-xl">
+      <div>
+        <p class="name pr-5">社員 : ○○○○○</p>
+        <p class="number pr-5">社員番号 : ○○○○○</p>
+        <p id="DateTimeDisp" class="pr-5 ">2021/6/14 : AM:11:00</p>
       </div>
 
-      <div class="button">
-        <button onclick="location.href='interview_emp.html'">面談日確認</button>
+      <!-- ログアウトボタン onclickの中にログアウト処理を書く -->
+      <input
+        type="submit"
+        class="sign-out fixed h-6 px-2 text-sm text-gray-500 bg-white border-2 border-gray-500 cursor-pointer  top-14 right-5 rounded-3xl md:px-5 md:text-base md:mr-5 md:h-10 hover:bg-gray-100"
+        value="ログアウト"
+      />
+    </div>
+    <!-- 体調情報 -->
+    <div class="flex mt-24 justify-evenly md:mt-48">
+      <!-- 血圧 -->
+      <div class="card">
+        <p class="text-xs text-center md:text-2xl">血圧</p>
+        <div class="text-center">
+          <p class="highBP text-red-500">最高:120mmHg</p>
+          <p class="lowBP text-blue-500">最低:120mmHg</p>
+          <p class="mt-5 text-sm">
+            <a
+              href="graph_emp.html"
+              class="text-xs border-b border-gray-600  md:text-base hover:text-black hover:border-black"
+              >1週間のグラフを見る</a
+            >
+          </p>
+        </div>
+      </div>
+      <!-- 脈拍 -->
+      <div class="card">
+        <p class="text-xs text-center md:text-2xl">脈拍</p>
+        <div class="heartbeat mt-6 text-center md:mt-10"><p>70 拍 / 分</p></div>
+      </div>
+      <!-- 体温 -->
+      <div class="card">
+        <p class="text-xs text-center md:text-2xl">体温</p>
+        <div class="text-center mt-7">
+          <p class="todayBodytemp">今日 : 36.5℃</p>
+          <p >昨日 : 36.5℃</p>
+        </div>
       </div>
     </div>
+
+    <!-- 面談日程ボタン -->
+    <div class="flex justify-center mt-14">
+      <input
+        type="submit"
+        onclick="location.href='interview_emp.html'"
+        class="px-10 py-1 text-sm text-white bg-gray-500 cursor-pointer  rounded-3xl md:py-2 md:px-20 md:text-xl hover:bg-gray-700"
+        value="面談日程確認"
+      />
+    </div>
+
+
+
+    <script type="text/javascript">
+      LoadProc();
+      function LoadProc() {
+        var target = document.getElementById("DateTimeDisp");
+
+        var now = new Date();
+
+        var Year = now.getFullYear();
+        var Month = now.getMonth()+1;
+        var Day = now.getDate();
+        var Time = now.toLocaleTimeString();
+  
+        target.innerHTML = Year + "年" + Month + "月" + Day + "日 " + Time;
+      }
+      setInterval('LoadProc()',1000);
+    </script>
 
     <!-- Vue.js -->
 		<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -63,8 +101,8 @@
 		<!-- Initialize Firebase -->
 		<script src="/__/firebase/init.js"></script>
 
-		<script src="./js/firebase/app.js"></script>
 		<script src="./js/firebase/logout.js"></script>
     <script src="./js/firebase/user.js"></script>
+
   </body>
 </html>

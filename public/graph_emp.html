@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>血圧　グラフ</title>
+  </head>
+
+  <body>
+    <h1
+      class="mt-5 ml-10 text-base font-bold text-gray-600  md:text-2xl md:mt-10 md:ml-20"
+    >
+      血圧グラフ
+    </h1>
+
+    <canvas id="myLineChart"></canvas>
+
+    <div class="flex justify-center text-xs mt5 md:mt-10 md:text-base">
+      <a
+        href="info_emp.html"
+        class="text-gray-600 border-b border-gray-600 hover:text-black"
+        >自己情報画面に戻る</a
+      >
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+    <script>
+      // dataのlabesに1週間の日付を配列で渡す
+      //1週間の日付のデータを配列で渡す
+      const datas = [
+        "8月1日",
+        "8月2日",
+        "8月3日",
+        "8月4日",
+        "8月5日",
+        "8月6日",
+        "8月7日",
+      ];
+
+      //最高血圧を配列で渡す
+      const blood_high = [135, 140, 130, 135, 145, 130, 129, 132];
+
+      //最低血圧を配列で渡す
+      const blood_row = [75, 65, 68, 72, 70, 74, 68, 70];
+
+      var ctx = document.getElementById("myLineChart");
+      var myLineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: datas,
+          datasets: [
+            {
+              label: "最高血圧 mmHG",
+              data: blood_high,
+              borderColor: "rgba(255,0,0,1)",
+              backgroundColor: "rgba(0,0,0,0)",
+              lineTension: 0,
+            },
+            {
+              label: "最低血圧 mmHG",
+              data: blood_row,
+              borderColor: "rgba(0,0,255,1)",
+              backgroundColor: "rgba(0,0,0,0)",
+              lineTension: 0,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "血圧（8月1日~8月7日）",
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  suggestedMax: 180,
+                  suggestedMin: 50,
+                  stepSize: 10,
+                  callback: function (value, index, values) {
+                    return value + "mmHG";
+                  },
+                },
+              },
+            ],
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

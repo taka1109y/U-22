@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/calendar.css" />
+    <title>面談日程調整</title>
+  </head>
+  <body>
+    <div class="pb-20 mx-16 mt-40 md:flex md:justify-evenly">
+      <!-- カレンダー -->
+      <div class="w-96 wrapper">
+        <!-- xxxx年xx月を表示 -->
+        <h1 id="header"></h1>
+
+        <!-- ボタンクリックで月移動 -->
+        <div id="next-prev-button">
+          <button id="prev" onclick="prev()">‹</button>
+          <button id="next" onclick="next()">›</button>
+        </div>
+
+        <!-- カレンダー -->
+        <div id="calendar"></div>
+      </div>
+
+      <!-- スケジュール -->
+      <div class="h-auto pb-10 mx-auto mt-10 border-2 border-gray-400 w-96">
+        <h2 class="mt-10 ml-16 text-xl text-gray-600">面談予約者</h2>
+
+        <!-- 面談予約者リスト -->
+        <div class="mt-10 ml-20">
+          <ul class="text-lg text-gray-600">
+            <li class="pb-2">10:00 ~ ○○○○○</li>
+            <li class="pb-2">11:00 ~ ○○○○○</li>
+            <li class="pb-2">12:00 ~ ○○○○○</li>
+            <li class="pb-2">13:00 ~ ○○○○○</li>
+          </ul>
+        </div>
+
+        <!-- ボーダー用divタグ -->
+        <div class="mx-10 mt-3 border-t border-gray-300"></div>
+
+        <!-- 面談予約ボタン -->
+        <p class="mt-5 ml-10 text-sm text-gray-700">- 面談予約 -</p>
+        <div class="relative flex items-center mt-3 justify-evenly">
+          <p id="selectedDate" class="text-lg text-gray-600">
+            日付を選択してください
+          </p>
+          <!-- 戻るボタン -->
+          <button
+            onclick="location.href='info_emp.html'"
+            class="h-10 text-sm text-white bg-gray-400 border-2 border-gray-400 rounded-lg  w-14 hover:bg-gray-600 hover:border-gray-600"
+          >
+            戻る
+          </button>
+          <!-- 選択ボタン -->
+          <button
+            onclick="location.href='interview_input_emp.html'"
+            class="h-10 text-sm text-white bg-blue-500 border-2 border-blue-500 rounded-lg  w-14 hover:bg-blue-400 hover:border-blue-400"
+          >
+            選択
+          </button>
+        </div>
+        <div class="ml-10">
+          <!-- 時間帯選択select box -->
+          <select
+            class="border-2 border-gray-600 rounded-lg focus:outline-none"
+          >
+            <option>10:00 ~ 11:00</option>
+            <option>11:00 ~ 12:00</option>
+            <option>12:00 ~ 13:00</option>
+            <option>13:00 ~ 14:00</option>
+            <option>14:00 ~ 15:00</option>
+            <option>15:00 ~ 16:00</option>
+            <option>16:00 ~ 17:00</option>
+            <option>17:00 ~ 18:00</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/calendar.js"></script>
+  </body>
+</html>

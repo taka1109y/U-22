@@ -2,9 +2,6 @@
 // ログイン用JS
 //
 
-// クラスの取得及び変数の定義
-const loginForm = document.querySelector('.login');
-
 /* ------------------------------
     Loading イメージ表示関数
     引数： msg 画面に表示する文言
@@ -21,6 +18,7 @@ function dispLoading(msg){
         $("body").append("<div id='loading'>" + dispMsg + "</div>");
     }
 }
+
 /* ------------------------------
 Loading イメージ削除関数
 ------------------------------ */
@@ -28,6 +26,17 @@ function removeLoading(){
     $("#loading").remove();
 }
 
+// 非同期処理中のイメージ関数の読み込み
+// import dispLoading from "../loading";
+// import removeLoading from "../loading";
+
+
+
+
+
+
+// クラスの取得及び変数の定義
+const loginForm = document.querySelector('.login');
 
 /* ------------------------------
     ログインボタン押下時の処理
