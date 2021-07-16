@@ -72,7 +72,7 @@ exports.getUserInfo = functions.https.onCall(async(data) => {
 
 
 /* ------------------------------
-    authログイン情報から社員名と社員番号の抽出
+    authログイン情報からバイタル情報の取得
     引数： data フォームの入力値(number:社員番号)
  ------------------------------ */
 exports.getHealthData = functions.https.onCall(async(data) => {
@@ -94,3 +94,59 @@ exports.getHealthData = functions.https.onCall(async(data) => {
         })
     })
 })
+
+
+
+// 下記プログラムはテスト中、まだ動きません
+/* ------------------------------
+    顔認証からのデータをFirestoreへ保存するAPI
+    引数： req AIの実行結果の配列
+ ------------------------------ */
+exports.python = functions.https.onRequest((req, res) => {
+    // CORSの
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'POST');
+    res.set('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    res.set('Access-Control-Allow-Credentials', true);
+    
+    // リクエストのメソット確認
+    if (req.method !== 'POST') {
+        res.status(405).send('Method Not Allowed');
+        return;
+    }
+    if (!req.body || !req.body.title) {
+        res.status(400).send('Request Body Not Found');
+        return;
+    }
+    
+    // reqの配列を代入
+    const memo = {
+        'title': req.body.title,
+        'description': req.body.description || 'unknown',
+        'platforms': req.body.platforms || [],
+        'million': req.body.million || false,
+        'releasedAt': req.body.releasedAt ? new Date(req.body.releasedAt) : new Date()
+    };
+    
+    console.log(memo);
+    
+    // Firestoreへの登録
+    return db
+        .collection('test')
+        .add(memo)
+        .then(docRef => {
+        docRef.get().then(snapshot => {
+            if (snapshot.exists) {
+                console.log('Document retrieved successfully.', snapshot.data());
+            }
+        });
+        // 登録に成功したら200を返す
+        res.status(200).send(docRef.id);
+        })
+        .catch(err => {
+        console.error(err);
+        // 登録に失敗したら500を返す
+        res.status(500).send('Error adding document:', err)
+    });
+})
+

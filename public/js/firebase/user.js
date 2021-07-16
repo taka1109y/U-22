@@ -1,3 +1,7 @@
+// functionsのユーザー情報及びバイタル情報の取得のAPIを呼び出す
+
+// 下記ローディング中のイメージ表示はローカル実行の時のみ
+// 本番環境では削除する
 /* ------------------------------
     Loading イメージ表示関数
     引数： msg 画面に表示する文言
@@ -19,6 +23,9 @@ function removeLoading(){
     $("#loading").remove();
 }
 
+
+
+// クライアントのログイン情報の確認
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         var email = user.email;
@@ -26,16 +33,19 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
+// ログイン情報から社員情報の取得
 async function getUserInfo(email) {
     const getUserInfo = await firebase.functions().httpsCallable('getUserInfo');
     getUserInfo({
-        email: email// APIにメールアドレス
+        email: email// APIにメールアドレスを送る
     })
     .then((getUserInfo) => {// 成功時
+        // 氏名
         const name = getUserInfo.data.userInfo.name;
+        // 社員番号
         const number = getUserInfo.data.userInfo.number;
+        // htmlをレンダリング
         if(name != undefined || number != undefined){
-
             document.querySelector('.name').innerHTML = "社員 : " + name;
             document.querySelector('.number').innerHTML = "社員番号 : " + number;
 
@@ -44,15 +54,18 @@ async function getUserInfo(email) {
     })
     .catch(error => {// 例外エラー発生時
         console.log(error.message);
+        removeLoading();
     });
 }
 
+// 社員番号からバイタル情報の取得APIの実行
 async function getHealthData(number) {
     const getHealthData = await firebase.functions().httpsCallable('getHealthData');
     getHealthData({
-        number: number
+        number: number //社員番号
     })
     .then((getHealthData) => {
+        // htmlのレンダリング
         const data = getHealthData.data.healthData;
 
         const bodytemp = data.Bodytemp;
@@ -69,5 +82,6 @@ async function getHealthData(number) {
     })
     .catch(error => {// 例外エラー発生時
         console.log(error.message);
+        removeLoading();
     });
 }
