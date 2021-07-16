@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- モーダル用css -->
+    <link rel="stylesheet" href="css/modal.css" />
+    <title>社員一覧</title>
+  </head>
+  <body class="text-gray-600">
+    <!-- ヘッダー -->
+    <div class="flex justify-between m-8">
+      <div>
+        <h1 class="text-3xl font-semibold">社員一覧</h1>
+        <h4 class="text-lg" id="today"></h4>
+      </div>
+
+      <div>
+        <ul class="list-disc">
+          <li class="hover:text-black"><a href="#">社員一覧</a></li>
+          <li class="hover:text-black"><a href="#">社員追加</a></li>
+          <li class="hover:text-black"><a href="#">社員面談確認</a></li>
+        </ul>
+        <button
+          class="fixed h-6 px-2 text-sm text-gray-500 bg-white border-2 border-gray-500 cursor-pointer  top-28 right-5 rounded-3xl md:px-5 md:text-base md:h-10 hover:bg-gray-100"
+        >
+          ログアウト
+        </button>
+      </div>
+    </div>
+
+    <!-- 絞り込みボタンと表示順ボタン -->
+    <div class="text-center">
+      <button
+        id="narrow_btn"
+        class="px-10 py-2 text-lg text-white bg-blue-500 cursor-pointer  rounded-3xl hover:bg-blue-700"
+      >
+        絞り込み
+      </button>
+      <div
+        id="order_btn"
+        class="flex w-5/12 py-2 mx-auto mt-10 text-white bg-gray-500  rounded-3xl justify-evenly"
+      >
+        <p class="cursor-pointer" id="order_left_btn">&#10003;50音順</p>
+        <p class="cursor-pointer" id="order_right_btn">入社順</p>
+      </div>
+    </div>
+
+    <!-- モーダル -->
+    <div
+      id="modal"
+      class="fixed top-0 left-0 flex items-center justify-center invisible w-screen h-screen font-light bg-gray-700  bg-opacity-30"
+    >
+      <div class="relative bg-white rounded-lg w-96 h-1/2">
+        <!-- バツボタン -->
+        <div
+          id="batsu"
+          class="absolute items-center w-1/12 text-3xl text-center text-gray-400 cursor-pointer  hover:text-black right-5 top-3"
+        >
+          &#x00D7;
+        </div>
+        <!-- 検索欄 -->
+        <div class="flex justify-center">
+          <input
+            type="text"
+            placeholder="社員/部署を検索"
+            class="justify-center w-9/12 mt-12 text-center text-gray-600 border border-gray-600 rounded-lg  focus:outline-none"
+          />
+        </div>
+
+        <!-- ボーダー用div -->
+        <div
+          class="w-9/12 mx-auto mt-10 text-gray-400 border-t border-gray-600"
+        ></div>
+
+        <!-- チェック欄 全員 -->
+        <div
+          class="relative flex items-center justify-center w-9/12 mx-auto mt-5 text-gray-400 border border-gray-600 rounded-lg "
+        >
+          <h3>すべての社員</h3>
+          <input class="absolute transform scale-125 right-3" type="checkbox" />
+        </div>
+
+        <!-- アコーディオンメニュー -->
+        <div
+          id="accordion"
+          class="relative flex items-center w-9/12 mx-auto mt-5 text-gray-400 border border-gray-600 rounded-lg "
+        >
+          <!-- 下矢印 -->
+          <svg
+            id="arrow"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 mx-3 cursor-pointer hover:text-black"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"
+            />
+          </svg>
+          <h3>会社全体</h3>
+
+          <input class="absolute transform scale-125 right-3" type="checkbox" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 社員リスト -->
+    <p id="order_disp" class="ml-10 text-gray-400 md:ml-28 mt-14">
+      表示:人事部
+    </p>
+    <div
+      class="grid w-10/12 grid-cols-1 gap-3 mx-auto mt-5 mb-20 md:grid-cols-3"
+    >
+      <!-- 絞り込みした社員を表示 -->
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex border-2 rounded-xl">
+        <img
+          src="img/profile_icon.png"
+          alt="プロフィール画像"
+          class="w-20 h-20 m-3"
+        />
+        <div class="mt-3">
+          <h4>人事部 1課</h4>
+          <div class="mt-2 ml-28 md:ml-1">
+            <h2 class="text-xl">弓場賢義</h2>
+            <h4 class="text-xs">Yumiba Takaki</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/emp_list.js"></script>
+  </body>
+</html>

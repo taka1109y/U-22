@@ -2,6 +2,8 @@
 // ログイン用JS
 //
 
+// 下記ローディング中のイメージ表示はローカル実行の時のみ
+// 本番環境では削除する
 /* ------------------------------
     Loading イメージ表示関数
     引数： msg 画面に表示する文言
@@ -26,11 +28,9 @@ function removeLoading(){
     $("#loading").remove();
 }
 
-// 非同期処理中のイメージ関数の読み込み
+// 非同期処理中のイメージ関数の読み込み（本番環境時）
 // import dispLoading from "../loading";
 // import removeLoading from "../loading";
-
-
 
 
 
